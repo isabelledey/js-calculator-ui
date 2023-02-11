@@ -84,6 +84,7 @@ const afterErrorHandler = function (value) {
 };
 
 const main = function () {
+  clear();
   buttonPress();
   keyPress();
 };
@@ -118,6 +119,7 @@ function buttonPress() {
 function keyPress() {
   document.addEventListener("keydown", function (e) {
     let key = e.key;
+
     if (key >= "0" && key <= "9") {
       afterErrorHandler(key);
     } else if (key === "+" || key === "-" || key === "*" || key === "/") {
@@ -128,6 +130,11 @@ function keyPress() {
       operate();
     } else if (key === "Delete" || key === "Backspace") {
       deleteInput();
+    } else if (e.shiftKey === true) {
+      if (key === "(" || key === ")") {
+        e.preventDefault();
+        afterErrorHandler(key);
+      }
     } else {
       if (displayInput.value === "Error") {
         return (displayInput.value = key);
