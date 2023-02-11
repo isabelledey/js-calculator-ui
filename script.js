@@ -56,6 +56,7 @@ const checkForDecimal = function () {
       );
       if (lastOperatorIndex > displayInput.value.lastIndexOf(".")) {
         allowDecimal = true;
+        displayInput.value += ".";
       }
     } else return;
   }
